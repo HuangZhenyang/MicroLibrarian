@@ -1,0 +1,5 @@
+package MicrosoftImageCup;
+
+public class HotBook extends Book{
+	
+}

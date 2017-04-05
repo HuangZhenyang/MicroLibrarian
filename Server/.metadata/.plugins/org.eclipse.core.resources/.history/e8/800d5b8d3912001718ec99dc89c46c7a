@@ -1,0 +1,19 @@
+package Spider;
+
+import java.io.IOException;
+
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.junit.Test;
+
+public class GetHotBook {
+	@Test
+	public static void getHotBook() throws IOException{
+		String url = "http://yuedu.163.com/";
+		Connection conn = Jsoup.connect(url).userAgent("Mozilla").cookie("auth", "roken").timeout(10000); // 建立与url中页面的连接
+        Document doc = conn.get(); // 解析页面
+        
+        
+	}
+}

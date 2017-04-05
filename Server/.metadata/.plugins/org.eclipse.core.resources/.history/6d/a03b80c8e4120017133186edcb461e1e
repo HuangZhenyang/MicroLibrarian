@@ -1,0 +1,47 @@
+package Spider;
+
+import edu.uci.ics.crawler4j.crawler.CrawlConfig;
+import edu.uci.ics.crawler4j.crawler.CrawlController;
+import edu.uci.ics.crawler4j.fetcher.PageFetcher;
+import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
+import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
+
+public class Controller {
+    public static void run() throws Exception {
+        String crawlStorageFolder = "d://data/crawl/root";
+        int numberOfCrawlers = 5;
+
+        CrawlConfig config = new CrawlConfig();
+        config.setCrawlStorageFolder(crawlStorageFolder);
+        config.setUserAgentString("User-Agent:Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50");
+        config.setPolitenessDelay(10000);
+        config.setMaxPagesToFetch(100);
+        //config.setResumableCrawling(true);
+        //config.setProxyHost("210.22.106.2");
+        //config.setProxyPort(80);
+        /*
+         * Instantiate the controller for this crawl.
+         */
+        PageFetcher pageFetcher = new PageFetcher(config);
+        RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
+        RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
+        CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
+
+        /*
+         * For each crawl, you need to add some seed urls. These are the first
+         * URLs that are fetched and then the crawler starts following links
+         * which are found in these pages
+         */
+        controller.addSeed("https://book.douban.com/");//https://book.douban.com/
+        controller.addSeed("https://book.douban.com/subject/26958882/?icn=index-latestbook-subject");
+        controller.addSeed("https://book.douban.com/subject/26989534/?icn=index-latestbook-subject");
+        
+        
+        //controller.addSeed("http://sports.sina.com.cn/basketball/nba/2017-03-23/doc-ifycstww0717961.shtml");
+        /*
+         * Start the crawl. This is a blocking operation, meaning that your code
+         * will reach the line after this only when crawling is finished.
+         */
+        controller.start(MyCrawler.class, numberOfCrawlers);
+    }
+}

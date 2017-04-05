@@ -1,0 +1,30 @@
+package MicrosoftImageCup;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import net.sf.json.JSONObject;
+
+public class SignIn {
+	public static void signIn(JSONObject jsonObject, Connection cn, PrintWriter pr) throws SQLException{
+		String userName = jsonObject.getString("username");
+		String userId = "";
+		PreparedStatement ps = cn.prepareStatement("SELECT id FROM user WHERE username=?");
+		ps.setString(1, userName);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()){
+			userId = rs.getString(1);
+		}
+		
+		ps = cn.prepareStatement("INSERT INTO signin(userid, date)" + 
+													"VALUES(?, ?)");
+		ps.setString(1, userId);
+		ps.setString(2, jsonObject.getString("date"));
+		ps.executeUpdate();
+		
+		ps.close();
+	}
+}

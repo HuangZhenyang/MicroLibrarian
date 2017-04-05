@@ -1,0 +1,13 @@
+package Spider;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class MyTest {
+
+	public static void main(String[] args) throws ClassNotFoundException, IOException, SQLException{
+		String url = "https://book.douban.com/subject_search?search_text=%E7%AB%A5%E5%B9%B4&cat=1001";
+		JsoupTest.parseUrl(url);
+		
+	}
+}

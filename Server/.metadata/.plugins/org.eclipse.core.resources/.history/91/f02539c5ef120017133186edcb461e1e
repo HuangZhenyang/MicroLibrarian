@@ -1,0 +1,100 @@
+package MicrosoftImageCup;
+
+import java.io.BufferedReader;
+//import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+import java.sql.Statement;
+import java.io.*;
+//import java.sql.*;
+
+// 构造和解析json
+//import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+public class MainService extends Thread {
+
+	private Socket s;
+	// private User user;
+
+	public void run() {
+		try {
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			PrintWriter pr = new PrintWriter(s.getOutputStream());
+			// PrintWriter prp = new PrintWriter(System.out);
+			String jsonString = br.readLine();
+			System.out.println(jsonString);
+
+			String dbDriver = "com.mysql.jdbc.Driver"; // org.gjt.mm.mysql.Driver
+			String dbUrl = "jdbc:mysql://127.0.0.1:3306/msImagecup"; //// URL指向要访问的数据库名
+			String dbUser = "root";
+			String dbPassword = "123456";
+			Class.forName(dbDriver); // 加载驱动程序
+			Connection cn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+			Statement st = cn.createStatement(); // state1ment用来执行SQL语句
+
+			// Parse JSON data
+			JSONObject jsonObject = JSONObject.fromObject(jsonString);
+			String clientRequest = jsonObject.getString("request");
+			System.out.println(">>> Request Info：" + clientRequest + "\n");
+			
+			switch (clientRequest) {
+			case "register": {
+				Register.handleRegister(jsonObject, cn, pr);
+			}
+				break;
+
+			case "login": {
+				Login.handleLogin(jsonObject, cn, pr);
+				System.out.println("退出login le ");
+			}
+				break;
+
+			case "recordBook": {
+				RecordBook.handleRecordBook(jsonObject, cn, pr);
+			}
+				break;
+
+			case "getSignData": {
+				GetSignData.getSignData(jsonObject, cn, pr);
+			}
+				break;
+
+			case "signIn": {
+				SignIn.signIn(jsonObject, cn, pr);
+			}
+				break;
+
+			case "getHotBook": {
+				GetHotBooks.handleGetHotBooks(jsonObject, cn, pr);
+			}
+				break;
+
+			case "getRecord": {
+				GetRecord.handleGetRecord(jsonObject, cn, pr);
+			}
+				break;
+
+			default:
+				break;
+			}
+			System.out.println("线程关闭了");
+			pr.close();
+			br.close();
+			cn.close();
+			st.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setSocket(Socket s) {
+		this.s = s;
+	}
+
+}

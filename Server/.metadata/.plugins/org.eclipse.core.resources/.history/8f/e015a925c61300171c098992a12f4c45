@@ -1,0 +1,70 @@
+package MicrosoftImageCup;
+
+import org.apache.mahout.cf.taste.common.TasteException;
+import org.apache.mahout.cf.taste.impl.common.LongPrimitiveIterator;
+import org.apache.mahout.cf.taste.impl.model.file.*;  
+import org.apache.mahout.cf.taste.impl.neighborhood.*;  
+import org.apache.mahout.cf.taste.impl.recommender.*;  
+import org.apache.mahout.cf.taste.impl.similarity.*;  
+import org.apache.mahout.cf.taste.model.*;   
+import org.apache.mahout.cf.taste.recommender.*;  
+import org.apache.mahout.cf.taste.similarity.*;  
+
+import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;  
+import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
+
+public class GetRecommend {
+	public static void handleGetRecommend() throws IOException, SQLException, ClassNotFoundException{
+		System.out.println("将数据从数据库取出来存到mydata.csv");
+		String filePath = "src/data/mydata.csv";
+        File file=new File(filePath);
+        if(!file.exists()){
+        	file.createNewFile();
+        }	
+		int nearCnt = 5;
+		int userId = 1; 
+		int recCnt = 1;
+		// Get data from HaveRead and store into mydata.csv
+		List<String> dataList=new ArrayList<String>();
+		Connection cn = ConnectDB.connectDB();
+		PreparedStatement ps = cn.prepareStatement("SELECT userid,bookid,userrate FROM HaveRead");
+		ResultSet rs = ps.executeQuery();
+		String eachRecord = "", eachUserId = "", eachBookId="", eachUserRate="";
+		
+		while(rs.next()){
+			eachUserId = rs.getString(1);
+			eachBookId = rs.getString(2);
+			eachUserRate = rs.getString(3);
+			eachRecord = eachUserId + "," + eachBookId + "," + eachUserRate;
+			dataList.add(eachRecord);
+		}
+		boolean isSuccess=CSVUtils.importCsv(file, dataList);
+		if(isSuccess){
+			System.out.println("Success!");
+		}
+		
+		try {
+			DataModel model = new FileDataModel(file);
+			UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
+			NearestNUserNeighborhood neighborhood = new NearestNUserNeighborhood(nearCnt, similarity, model);
+			Recommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
+			List<RecommendedItem> recommendations = recommender.recommend(userId, recCnt);
+			for (RecommendedItem rItem : recommendations) {
+	            System.out.printf("(%s,%f)", rItem.getItemID(), rItem.getValue());
+	        }
+			//return recommendations;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TasteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//return null;
+	}
+}

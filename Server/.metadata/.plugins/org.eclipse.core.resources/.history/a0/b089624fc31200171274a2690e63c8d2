@@ -1,0 +1,25 @@
+package Spider;
+
+import java.io.IOException;
+
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class GetHotBook {
+	
+	public static void main(String[] args) throws IOException{
+		String url = "http://yuedu.163.com/";
+		Connection conn = Jsoup.connect(url).userAgent("Mozilla").cookie("auth", "roken").timeout(10000); // 建立与url中页面的连接
+        Document doc = conn.get(); // 解析页面
+        Element divElement = doc.getElementById("J_Slider01");
+        Elements aElements = divElement.select("li").select("a");
+        for(Element each:aElements){
+        	System.out.println("Book's url: " + each.attr("title"));
+        	System.out.println("Book's img url: " + each.select("img").attr("src"));
+        	System.out.println("Book's url: " + each.attr("href"));
+        }
+	}
+}

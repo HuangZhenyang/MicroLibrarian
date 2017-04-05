@@ -1,0 +1,10 @@
+package MicrosoftImageCup;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+
+public class GetSignData {
+	public static void getSignData(Connection cn, PrintWriter pr, User user){
+		
+	}
+}

@@ -1,0 +1,63 @@
+package MicrosoftImageCup;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.StringTokenizer;
+
+import net.sf.json.JSONObject;
+
+public class RecordBook {
+	public static void handleRecordBook(JSONObject jsonObject, Connection cn, PrintWriter pr, User user) throws SQLException{
+		Book book;
+		String bookName = jsonObject.getString("bookname");
+		String author = jsonObject.getString("author");
+		book = new Book(bookName,author);
+		String bookid = "";
+		Boolean isRead = false;
+		// Database Options
+		//1.see if book has been stored in database 2.if not, call crawler and store. 
+		PreparedStatement ps = cn.prepareStatement("SELECT id FROM book WHERE bookname=? and author=?");
+		ps.setString(1, book.getBookName());
+		ps.setString(2, book.getAuthor());
+		ResultSet rs = ps.executeQuery(); 
+		if(rs.next()){
+			bookid = rs.getString(1);
+			
+		}else{
+			/*Call Crawler and Store*/
+			
+		}
+		
+		//And then see if TABLE HaveRead has this book use bookid  
+		ps = cn.prepareStatement("SELECT bookid FROM book WHERE userid=?");
+		ps.setString(1, user.getId()+"");
+		rs = ps.executeQuery();
+		if(rs.next()){ //if user has read any book ever
+			StringTokenizer st = new StringTokenizer(rs.getString(1), "_");
+			while(st.hasMoreTokens()){
+				if(st.nextToken() == bookid){
+					isRead = true;
+					break;
+				}
+			}
+			
+		}
+		
+		if(!isRead){ // if user hasn't read this book. Store it!
+			String resultBookId = rs.getString(1) + "_" + bookid;
+			ps = cn.prepareStatement("UPDATE HaveRead SET bookid=? where userid=?");
+			ps.setString(1, resultBookId);
+			ps.setString(2, user.getId()+"");
+			ps.executeUpdate();
+			
+		}
+		
+		
+		
+		
+		
+	}
+}

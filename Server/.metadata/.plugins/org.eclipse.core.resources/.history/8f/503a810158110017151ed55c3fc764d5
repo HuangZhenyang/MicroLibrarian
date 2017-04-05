@@ -1,0 +1,20 @@
+package MicrosoftImageCup;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import net.sf.json.JSONObject;
+
+public class SignIn {
+	public static void signIn(JSONObject jsonObject, Connection cn, PrintWriter pr, User user) throws SQLException{
+		PreparedStatement ps = cn.prepareStatement("INSERT INTO signin(userid, date)" + 
+													"VALUES(?, ?)");
+		ps.setString(1, user.getId()+"");
+		ps.setString(2, jsonObject.getString("date"));
+		ps.executeUpdate();
+		
+	}
+}

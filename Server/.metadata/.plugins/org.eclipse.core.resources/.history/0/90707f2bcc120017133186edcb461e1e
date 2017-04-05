@@ -1,0 +1,12 @@
+package MicrosoftImageCup;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+
+import net.sf.json.JSONObject;
+
+public class GetHotAndRecord {
+	public static void handleGetHotAndRecord(JSONObject jsonObject, Connection cn, PrintWriter pr){
+		
+	}
+}

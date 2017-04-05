@@ -1,0 +1,89 @@
+package MicrosoftImageCup;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+//import java.util.StringTokenizer;
+
+import net.sf.json.JSONObject;
+
+public class GetRecord {
+	public static void handleGetRecord(JSONObject jsonObject, Connection cn, PrintWriter pr) throws SQLException{
+		JSONObject resultJsonObject = new JSONObject();
+		@SuppressWarnings("rawtypes")
+		List<Map> recordBooks = new ArrayList<Map>();
+		
+		//Book book = null;
+		Set<String> bookId = new HashSet<String>();
+		String userName = jsonObject.getString("username");
+		//Get user's id, *** IMPORTANT  ***
+		PreparedStatement ps = cn.prepareStatement("SELECT id FROM user WHERE userName=?");
+		ps.setString(1, userName);
+		ResultSet rs = ps.executeQuery();
+		int userId  = 0;
+		if(rs.next()){
+			userId = Integer.parseInt(rs.getString(1));
+			//Get Book's id
+			ps = cn.prepareStatement("SELECT bookid FROM HaveRead WHERE userid=?");
+			ps.setString(1, userId+"");
+			rs = ps.executeQuery();
+			if(rs.next()){
+				bookId.add(rs.getString(1));
+				resultJsonObject.put("result", "true");
+				while(rs.next()){
+					bookId.add(rs.getString(1));
+				}
+				
+				//Get Book's info
+				for(String each : bookId){
+					ps = cn.prepareStatement("SELECT bookname,author,imgurl,doubanrate from Book "
+							+ "WHERE id=?");
+					ps.setString(1, each);
+					rs = ps.executeQuery();
+					while(rs.next()){
+						Map<String, String> eachRecordBookAttr = new HashMap<String, String>();
+						//book name
+						eachRecordBookAttr.put("bookname", rs.getString(1));
+
+						//author
+						eachRecordBookAttr.put("author", rs.getString(2));
+						//imgurl
+						eachRecordBookAttr.put("imgurl", rs.getString(3));
+						//douban rate
+						if(rs.getString(4).equals("")){
+							eachRecordBookAttr.put("doubanrate", "0.0");
+						}else{
+							eachRecordBookAttr.put("doubanrate", rs.getString(4));
+						}
+
+						recordBooks.add(eachRecordBookAttr);
+						
+					}
+				}
+				
+				resultJsonObject.put("record", recordBooks);
+				// {"result":"true","record":[{"bookname":"XX","author":"XX","imgurl":"XX","doubanrate":"XX"},{......},{......}]}
+				//send
+				System.out.println("Send To Client: " + resultJsonObject.toString());
+				pr.println(resultJsonObject.toString());
+				pr.flush();
+			}else{
+				resultJsonObject.put("result", "false");
+				//send
+				pr.println(resultJsonObject.toString());
+				pr.flush();
+			}
+			
+			
+		}
+				
+	}
+}

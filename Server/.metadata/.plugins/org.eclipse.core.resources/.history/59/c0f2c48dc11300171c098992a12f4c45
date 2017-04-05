@@ -1,0 +1,39 @@
+package MicrosoftImageCup;
+
+import org.apache.mahout.cf.taste.common.TasteException;
+import org.apache.mahout.cf.taste.impl.common.LongPrimitiveIterator;
+import org.apache.mahout.cf.taste.impl.model.file.*;  
+import org.apache.mahout.cf.taste.impl.neighborhood.*;  
+import org.apache.mahout.cf.taste.impl.recommender.*;  
+import org.apache.mahout.cf.taste.impl.similarity.*;  
+import org.apache.mahout.cf.taste.model.*;   
+import org.apache.mahout.cf.taste.recommender.*;  
+import org.apache.mahout.cf.taste.similarity.*;  
+
+import java.io.*;  
+import java.util.*;  
+import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
+
+public class GetRecommend {
+	public static void handleGetRecommend(){
+		String filePath = "";
+		int nearCnt = 0;
+		int userId = 0; 
+		int recCnt = 0;
+		try {
+			DataModel model = new FileDataModel(new File(filePath));
+			UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
+			NearestNUserNeighborhood neighborhood = new NearestNUserNeighborhood(nearCnt, similarity, model);
+			Recommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
+			List<RecommendedItem> recommendations = recommender.recommend(userId, recCnt);
+			return recommendations;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TasteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

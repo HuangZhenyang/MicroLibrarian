@@ -1,0 +1,29 @@
+package MicrosoftImageCup;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import net.sf.json.JSONObject;
+
+public class RecordBook {
+	public static void handleRecordBook(JSONObject jsonObject, Connection cn, PrintWriter pr, User user) throws SQLException{
+		Book book;
+		String bookName = jsonObject.getString("bookname");
+		String author = jsonObject.getString("author");
+		book = new Book(bookName,author);
+		// Database Options
+		//1.see if book has been stored in database 2.if not, call crawler and store. 
+		PreparedStatement ps = cn.prepareStatement("SELECT bookName,author FROM user WHERE bookName=? and author=?");
+		ps.setString(1, book.getBookName());
+		ps.setString(2, book.getAuthor());
+		ResultSet rs = ps.executeQuery(); 
+		if(rs.next()){
+			
+		}else{
+			/*Call Crawler and Store*/
+		}
+	}
+}

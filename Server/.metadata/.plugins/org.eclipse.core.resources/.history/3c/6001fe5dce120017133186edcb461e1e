@@ -1,0 +1,17 @@
+package MicrosoftImageCup;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.util.HashSet;
+import java.util.Set;
+
+import net.sf.json.JSONObject;
+import Spider.GetHotBook;
+
+public class GetHotBooks {
+	public static void handleGetHotAndRecord(JSONObject jsonObject, Connection cn, PrintWriter pr) throws IOException{
+		Set<String> bookImgUrls = new HashSet<String>();
+		bookImgUrls = GetHotBook.handleGetHotBook();
+	}
+}

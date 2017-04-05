@@ -1,0 +1,30 @@
+package MicrosoftImageCup;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONObject;
+import Spider.GetHotBook;
+
+public class GetHotBooks {
+	public static void handleGetHotAndRecord(JSONObject jsonObject, Connection cn, PrintWriter pr) throws IOException{
+		List<Map> bookImgUrls = new ArrayList<Map>();
+		bookImgUrls = GetHotBook.handleGetHotBook();
+		
+		JSONObject resultJsonObject = new JSONObject();
+		if(bookImgUrls.size() == 4){
+			resultJsonObject.put("result", "true");
+			
+		}else{
+			resultJsonObject.put("result", "false");
+		}
+		
+		
+	
+	
+	
+	}
+}

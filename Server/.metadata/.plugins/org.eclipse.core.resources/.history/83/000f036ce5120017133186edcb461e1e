@@ -1,0 +1,61 @@
+package Spider;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import MicrosoftImageCup.Book;
+
+//import org.junit.Test;
+
+public class JsoupTest {
+    //@Test
+    public static void parseUrl(String bookUrl) throws IOException, ClassNotFoundException, SQLException {
+    	
+    	System.out.println("#################华丽分割线##################");
+    	
+        //String url = "https://book.douban.com/subject/26925834/?icn=index-editionrecommend";
+        Connection conn = Jsoup.connect(bookUrl).userAgent("Mozilla").cookie("auth", "roken").timeout(10000); // 建立与url中页面的连接
+        Document doc = conn.get(); // 解析页面
+        //System.out.println(doc);
+        //Book's name
+        String bookname = doc.select("h1").select("span[property]").first().text();
+        System.out.println("Bookname: " + bookname);
+        //Author
+        Element authorElement = doc.getElementById("info");
+        String author = authorElement.select("a[href]").first().text();
+        System.out.println("Author: " + author);
+        //Image url
+        Element imgElement = doc.getElementById("mainpic");
+        String imgUrl = imgElement.select("a").first().attr("href");
+        System.out.println("Image url: " + imgUrl);
+        //Rating
+        String doubanRate = doc.getElementById("interest_sectl").select("div[class=rating_self clearfix]").select("strong[class=ll rating_num ]").text();
+        System.out.println("Rating: " + doubanRate);
+        //Tags
+        Elements div= doc.getElementById("db-tags-section").select("div[class=indent]");
+        Set<String> tags = new HashSet<String>();
+        System.out.print("Tags: ");
+        for(Element each:div){
+        	String tempTag = each.select("a[class=  tag]").text();
+        	tags.add(tempTag);
+        	System.out.println(tempTag);
+        }
+        
+        // Store Book's info to DB
+        Book book = new Book(bookname, author, imgUrl, doubanRate, tags);
+        StoreBookToDB.storeBook(book);
+       
+        
+        
+        
+        
+    }
+}

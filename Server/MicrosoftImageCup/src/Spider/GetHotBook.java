@@ -1,0 +1,39 @@
+package Spider;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class GetHotBook {
+	
+	@SuppressWarnings("rawtypes")
+	public static List<Map> handleGetHotBook() throws IOException{
+		List<Map> bookImgUrls = new ArrayList<Map>();
+		
+		String url = "http://yuedu.163.com/";
+		Connection conn = Jsoup.connect(url).userAgent("Mozilla").cookie("auth", "roken").timeout(10000); // 建立与url中页面的连接
+        Document doc = conn.get(); // 解析页面
+        Element divElement = doc.getElementById("J_Slider01");
+        Elements aElements = divElement.select("li").select("a");
+        String imgUrl = "";
+        for(Element each:aElements){
+        	Map<String, String> eachBookImgUrl = new HashMap<String, String>();
+        	imgUrl = each.select("img").attr("src");
+        	eachBookImgUrl.put("imgurl", imgUrl);
+        	bookImgUrls.add(eachBookImgUrl);
+        	
+        	//System.out.println("Book's title: " + each.attr("title"));
+        	//System.out.println("Book's img url: " + each.select("img").attr("src"));
+        	//System.out.println("Book's url: " + each.attr("href"));
+        }
+        return bookImgUrls;      
+	}
+}

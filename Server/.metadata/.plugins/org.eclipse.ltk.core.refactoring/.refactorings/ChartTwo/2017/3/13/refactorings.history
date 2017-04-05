@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 7 elements to &apos;lib&apos;&#x0D;&#x0A;- Original project: &apos;ChartTwo&apos;&#x0D;&#x0A;- Destination element: &apos;lib&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     commons-logging-1.2.jar&#x0D;&#x0A;     slf4j-jcl-1.6.1.jar&#x0D;&#x0A;     guava-18.0.jar&#x0D;&#x0A;     mahout-math-0.9.jar&#x0D;&#x0A;     commons-math3-3.5.jar&#x0D;&#x0A;     mahout-core-0.9.jar&#x0D;&#x0A;     slf4j-api-1.6.1.jar" description="Copy files" element1="Lib/commons-logging-1.2.jar" element2="Lib/slf4j-jcl-1.6.1.jar" element3="Lib/guava-18.0.jar" element4="Lib/mahout-math-0.9.jar" element5="Lib/commons-math3-3.5.jar" element6="Lib/mahout-core-0.9.jar" element7="Lib/slf4j-api-1.6.1.jar" files="7" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1490706176848" target="/MicrosoftImageCup/lib" units="0" version="1.0"/>
+</session>

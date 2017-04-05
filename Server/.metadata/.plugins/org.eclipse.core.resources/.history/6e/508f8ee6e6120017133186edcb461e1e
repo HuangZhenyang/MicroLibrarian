@@ -1,0 +1,8 @@
+package Spider;
+
+public class CallSpider {
+	public static void main(String[] args) throws Exception{
+		String request = "book";
+		Controller.run(request);
+	}
+}

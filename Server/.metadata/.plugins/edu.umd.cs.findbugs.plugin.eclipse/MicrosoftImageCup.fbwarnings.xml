@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.1-dev-20150306-5afe4d1" sequence="1" timestamp="1490346290909" analysisTimestamp="1490346286100" release="">
+  <Project projectName="MicrosoftImageCup">
+    <Jar>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\bin\Spider\JsoupTest.class</Jar>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\bin</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\commons-beanutils-1.7.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\commons-collections-3.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\commons-lang-2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\commons-logging-1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\ezmorph-1.0.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\json-lib-2.2.3-jdk13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\mysql-connector-java-5.1.41-bin.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\crawler4j-4.1-jar-with-dependencies.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\slf4j-jdk14-1.7.25.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\jsoup-1.10.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\junit.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\hamcrest-core-1.3.rc2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\lib\hamcrest-library-1.3.rc2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Program Files\Java\jdk1.8.0_65\jre\lib\rt.jar</AuxClasspathEntry>
+    <SrcDir>C:\Users\huang zhen yang\Desktop\&#22522;&#20110;&#20113;&#35745;&#31639;&#21644;&#22823;&#25968;&#25454;&#30340;&#26234;&#24935;&#32456;&#29983;&#22270;&#20070;&#39302;\Main\MicrosoftImageCup\src</SrcDir>
+    <Cloud id="edu.umd.cs.findbugs.cloud.doNothingCloud" online="false"></Cloud>
+  </Project>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Fri, 24 Mar 2017 17:04:37 +0800" total_classes="1" referenced_classes="17" total_bugs="0" total_size="9" num_packages="1" java_version="1.8.0_65" vm_version="25.65-b01" cpu_seconds="11.92" clock_seconds="4.85" peak_mbytes="652.92" alloc_mbytes="910.50" gc_seconds="0.06">
+    <PackageStats package="Spider" total_bugs="0" total_types="1" total_size="9">
+      <ClassStats class="Spider.JsoupTest" sourceFile="JsoupTest.java" interface="false" size="9" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="658" invocations="2" avgMicrosecondsPerInvocation="329280" maxMicrosecondsPerInvocation="425565" standardDeviationMircosecondsPerInvocation="96286"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="291" invocations="359" avgMicrosecondsPerInvocation="811" maxMicrosecondsPerInvocation="26038" standardDeviationMircosecondsPerInvocation="1779"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="115" invocations="360" avgMicrosecondsPerInvocation="320" maxMicrosecondsPerInvocation="5883" standardDeviationMircosecondsPerInvocation="505"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="107" invocations="17" avgMicrosecondsPerInvocation="6331" maxMicrosecondsPerInvocation="22507" standardDeviationMircosecondsPerInvocation="7536"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="72" invocations="63" avgMicrosecondsPerInvocation="1152" maxMicrosecondsPerInvocation="7229" standardDeviationMircosecondsPerInvocation="1319"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="67" invocations="17" avgMicrosecondsPerInvocation="3955" maxMicrosecondsPerInvocation="18653" standardDeviationMircosecondsPerInvocation="5078"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="56" invocations="2" avgMicrosecondsPerInvocation="28390" maxMicrosecondsPerInvocation="55417" standardDeviationMircosecondsPerInvocation="27027"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="45" invocations="34" avgMicrosecondsPerInvocation="1343" maxMicrosecondsPerInvocation="26599" standardDeviationMircosecondsPerInvocation="4568"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="35" invocations="17" avgMicrosecondsPerInvocation="2100" maxMicrosecondsPerInvocation="11837" standardDeviationMircosecondsPerInvocation="3227"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1490346290906" release="" codeSize="0" numClasses="0"/>
+  </History>
+</BugCollection>

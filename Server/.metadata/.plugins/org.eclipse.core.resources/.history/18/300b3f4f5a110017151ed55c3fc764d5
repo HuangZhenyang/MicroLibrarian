@@ -1,0 +1,19 @@
+package MicrosoftImageCup;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class GetSignData {
+	public static void getSignData(Connection cn, PrintWriter pr, User user) throws SQLException{
+		int userId = user.getId();
+		PreparedStatement ps = cn.prepareStatement("SELECT date FROM user WHERE id=?");
+		ps.setString(1, userId+"");
+		ResultSet rs = ps.executeQuery(); // rs就是SQL查询语句返回的结果集
+		if(rs.next()){
+			
+		}
+	}
+}
